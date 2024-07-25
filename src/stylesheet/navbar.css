@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Rubik+Mono+One&family=Ultra&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Rubik+Mono+One&display=swap');
+*{
+  margin : 0px;
+}
+
+::-webkit-scrollbar{
+  scrollbar-width: none;
+}
+
+.parent-wrap{
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-top: 10px;
+
+}
+
+.navbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.links{
+  font-family: "Hammersmith One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+  color: #1C4E34;
+}
+
+.logo{
+  font-family: "Ultra", serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #1C4E34;
+}
+
+.logout-btn{
+  height: 40px;
+  margin-left: 30px;
+  width: 80px;
+  font-family: "Hammersmith One", sans-serif;
+  font-size: 17px;
+  color: #BFC3BD;
+  background-color: white;
+  border-width: 2px;
+  border-color:#BFC3BD;
+  border-style: solid;
+  outline: none;
+  border-radius: 5px;
+}
+
+.logout-btn:hover{
+  background-color: #1C4E34;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.logout-btn:active{
+  opacity: 0.75;
+}

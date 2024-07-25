@@ -1,0 +1,44 @@
+.service-sec{
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-top: 10px;
+}
+
+.crop-recommend{
+  margin-top: 20px;
+  min-height: 50vh;
+  background-color: #EBFBF3;
+}
+
+.weather-forecast{
+  margin-top: 20px;
+  min-height: 50vh;
+  background-color: #EBFBF3;
+}
+
+.disease-prediction{
+  margin-top: 20px;
+  min-height: 50vh;
+  background-color: #EBFBF3;
+}
+
+.fertilizer-guidance{
+  margin-top: 20px;
+  min-height: 50vh;
+  background-color: #EBFBF3;
+}
+
+.selling-decision{
+  margin-top: 20px;
+  min-height: 50vh;
+  background-color: #EBFBF3;
+}
+
+.weather-img{
+  width: 400px;
+}
+
+.image-wrap{
+  display: flex;
+  justify-content: space-around
+}
