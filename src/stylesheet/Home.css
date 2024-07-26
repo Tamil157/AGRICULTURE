@@ -1,17 +1,17 @@
 .Home-sec{
-  margin-top: 10px;
-  min-height: 100vh;
-  background-color: #EBFBF3;
-}
-
-.footer{
-  padding-top: 20px;
-  background-color: #2F4841;
-  height: 80px;
-}
-
-.footer p{
-  text-align: center;
-  color: white;
-  font-size: 20px;
-}
+    margin-top: 10px;
+    min-height: 100vh;
+    background-color: #EBFBF3;
+  }
+  
+  .footer{
+    padding-top: 20px;
+    background-color: #2F4841;
+    height: 80px;
+  }
+  
+  .footer p{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+  }
