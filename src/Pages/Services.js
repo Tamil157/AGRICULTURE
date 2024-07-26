@@ -1,72 +1,51 @@
-import React from "react";
+import React from 'react';
 import "../stylesheet/Services.css"
 import Navbar from "../nav"
-export default function Services(){
-  return(
-    <div className="service-sec">
-      < Navbar />
-      <section className="crop-recommend">
-        <div className="image-wrap-L">
-          <img className="weather-img" src={require("../images/weather.jpg")}/>
-        </div>
-        <div className="text-wrap">
-          <p>Mollit ex Lorem duis fugiat in consectetur Lorem adipisicing sit ut.
-             Nostrud commodo culpa est consequat in dolor ea aliqua duis et id
-             .Deserunt reprehenderit cupidatat labore deserunt adipisicing.
-          </p>
-        </div>
-        
-      </section>
-      
-      <section className="weather-forecast">
-          <div className="text-wrap-R">
-            <p>Mollit ex Lorem duis fugiat in consectetur Lorem adipisicing sit ut.
-              Nostrud commodo culpa est consequat in dolor ea aliqua duis et id
-              .Deserunt reprehenderit cupidatat labore deserunt adipisicing.
-            </p>
+
+
+const services = [
+  {
+    name: 'Crop Recommendation',
+    description: 'Get tailored crop recommendations based on your soil phosphorus, pH, and nitrogen levels to maximize yield and sustainability.',
+  },
+  {
+    name: 'Weather Forecast',
+    description: 'Access accurate weather forecasts to plan your farming activities and make informed decisions about irrigation and protection measures.',
+  },
+  {
+    name: 'Disease Prediction',
+    description: 'Use advanced image analysis to predict crop diseases early, receive guidance on preventive measures, and protect your crops effectively.',
+  },
+  {
+    name: 'Fertilizer Guidance',
+    description: "Get precise recommendations on the types and amounts of fertilizers to use based on your crop and soil conditions, enhancing growth and productivity.",
+  },
+  {
+    name: 'Selling Decision',
+    description: 'Receive insights on the best times and markets to sell your produce, helping you maximize your profits and reduce waste.',
+  },
+  {
+    name: 'Vehicle Requirements',
+    description: 'Determine the best types and quantities of farming vehicles needed for your operations, ensuring efficiency and cost-effectiveness.',
+  },
+];
+
+function Services() {
+  return (
+    <div className='service-wrapper'>
+    <Navbar />
+    <div className="App">
+      <div className="cards">
+        {services.map((services, index) => (
+          <div className="card" key={index}>
+            <h3>{services.name}</h3>
+            <p>{services.description}</p>
           </div>
-            <div className="image-wrap-R">
-              <img className="weather-img" src={require("../images/weather.jpg")}/>
-            </div>
-          
-      </section>
-
-      <section className="disease-prediction">
-        <div className="image-wrap-L">
-            <img className="weather-img" src={require("../images/weather.jpg")}/>
-        </div>
-          <div className="text-wrap">
-            <p>Mollit ex Lorem duis fugiat in consectetur Lorem adipisicing sit ut.
-              Nostrud commodo culpa est consequat in dolor ea aliqua duis et id
-              .Deserunt reprehenderit cupidatat labore deserunt adipisicing.
-            </p>
-          </div>
-      </section>
-
-      <section className="fertilizer-guidance">
-        <div className="text-wrap-R">
-          <p>Mollit ex Lorem duis fugiat in consectetur Lorem adipisicing sit ut.
-              Nostrud commodo culpa est consequat in dolor ea aliqua duis et id
-              .Deserunt reprehenderit cupidatat labore deserunt adipisicing.
-          </p>
-        </div>
-        <div className="image-wrap-R">
-              <img className="weather-img" src={require("../images/weather.jpg")}/>
-              </div>
-      </section>
-
-      <section className="selling-decision">
-        <div className="image-wrap-L">
-            <img className="weather-img" src={require("../images/weather.jpg")}/>
-        </div>
-        <div className="text-wrap">
-            <p>Mollit ex Lorem duis fugiat in consectetur Lorem adipisicing sit ut.
-               Nostrud commodo culpa est consequat in dolor ea aliqua duis et id
-              .Deserunt reprehenderit cupidatat labore deserunt adipisicing.
-            </p>
-        </div>
-
-      </section>
+        ))}
+      </div>
     </div>
-  )
+    </div>
+  );
 }
+
+export default Services;

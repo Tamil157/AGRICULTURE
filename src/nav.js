@@ -4,7 +4,6 @@ import "./stylesheet/navbar.css"
 
 export default function Navbar(){
   return(
-
     <header className="navbar">
       <div>
         <h1 className="logo">FarmerIndia</h1>

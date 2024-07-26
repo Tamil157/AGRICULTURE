@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Rubik+Mono+One&family=Ultra&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Rubik+Mono+One&display=swap');
+
+
+.about-wrapper{
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-top: 10px;
+}
+
+.abt-us{
+  font-family: "Hammersmith One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 200px;
+} 
