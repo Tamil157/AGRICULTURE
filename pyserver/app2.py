@@ -26,6 +26,41 @@ except Exception as e:
     logging.error(f"Error loading fertilizer model: {str(e)}")
     fertilizer_model = None
 
+# Dictionaries for mapping model predictions to names
+fertilizer_dict = {
+    0: 'Urea',
+    1: 'DAP',
+    2: '14-35-14',
+    3: '28-28',
+    4: '17-17-17',
+    5: '20-20'
+}
+
+crop_dict = {
+    0: 'rice',
+    1: 'maize',
+    2: 'chickpea',
+    3: 'kidneybeans',
+    4: 'pigeonpeas',
+    5: 'mothbeans',
+    6: 'mungbean',
+    7: 'blackgram',
+    8: 'lentil',
+    9: 'pomegranate',
+    10: 'banana',
+    11: 'mango',
+    12: 'grapes',
+    13: 'watermelon',
+    14: 'muskmelon',
+    15: 'apple',
+    16: 'orange',
+    17: 'papaya',
+    18: 'coconut',
+    19: 'cotton',
+    20: 'jute',
+    21: 'coffee'
+}
+
 @app.route('/predict_crop', methods=['POST'])
 def predict_crop():
     try:
@@ -39,9 +74,13 @@ def predict_crop():
         logging.debug(f"Reshaped data: {data}")
         prediction = crop_model.predict(data)
         logging.debug(f"Crop prediction: {prediction}")
-        # Convert numpy types to native Python types
-        prediction = prediction.tolist()  # Converts the array to a Python list
-        return jsonify({'prediction': prediction[0]})
+
+        # Map the prediction to the corresponding crop name
+        prediction_value = prediction[0]
+        crop_name = crop_dict.get(prediction_value, "Unknown crop")
+        logging.debug(f"Crop name: {crop_name}")
+
+        return jsonify({'prediction': crop_name})
     except Exception as e:
         logging.error(f"Error during crop prediction: {str(e)}")
         traceback.print_exc()  # Print the stack trace
@@ -60,9 +99,13 @@ def predict_fertilizer():
         logging.debug(f"Reshaped data: {data}")
         prediction = fertilizer_model.predict(data)
         logging.debug(f"Fertilizer prediction: {prediction}")
-        # Convert numpy types to native Python types
-        prediction = prediction.tolist()  # Converts the array to a Python list
-        return jsonify({'prediction': prediction[0]})
+
+        # Map the prediction to the corresponding fertilizer name
+        prediction_value = prediction[0]
+        fertilizer_name = fertilizer_dict.get(prediction_value, "Unknown fertilizer")
+        logging.debug(f"Fertilizer name: {fertilizer_name}")
+
+        return jsonify({'prediction': fertilizer_name})
     except Exception as e:
         logging.error(f"Error during fertilizer prediction: {str(e)}")
         traceback.print_exc()  # Print the stack trace
