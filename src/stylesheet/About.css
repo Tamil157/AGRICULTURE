@@ -1,16 +1,237 @@
 @import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Rubik+Mono+One&family=Ultra&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Rubik+Mono+One&display=swap');
 
-
-.about-wrapper{
-  margin-left: 60px;
-  margin-right: 60px;
-  margin-top: 10px;
+/* Define keyframe animations */
+@keyframes moveInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
-.abt-us{
+@keyframes moveInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Apply animations */
+.abt-us {
   font-family: "Hammersmith One", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 200px;
+  font-size: 150px;
+  margin-top: 50px;
+  animation: moveInFromLeft 1s ease-out;
+}
+
+.abt-cnt {
+  font-family: "Hammersmith One", sans-serif;
+  font-size: 20px;
+  margin-left: 200px;
+  line-height: 40px;
+  animation: moveInFromRight 1s ease-out;
+}
+
+.contact-button {
+  font-family: "Hammersmith One", sans-serif;
+  font-size: 18px;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  opacity: 0; /* Start hidden */
+  animation: fadeIn 1s ease-out 1s forwards; /* Delay animation */
+}
+
+
+.about-wrapper {
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-top: 10px;
+  position: relative;
+}
+
+.abt-us {
+  font-family: "Hammersmith One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 150px;
+  margin-top: 50px;
 } 
+
+.abt-cnt {
+  font-family: "Hammersmith One", sans-serif;
+  font-size: 20px;
+  margin-left: 200px;
+  line-height: 40px;
+}
+
+.contact-button {
+  font-family: "Hammersmith One", sans-serif;
+  font-size: 18px;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+}
+
+.contact-button:hover {
+  background-color: #333;
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 10px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-wrapper {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .abt-us {
+    font-size: 100px;
+    margin-top: 30px;
+  }
+
+  .abt-cnt {
+    font-size: 16px;
+    margin-left: 0;
+    line-height: 30px;
+  }
+
+  .contact-button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-wrapper {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .abt-us {
+    font-size: 60px;
+    margin-top: 20px;
+  }
+
+  .abt-cnt {
+    font-size: 14px;
+    margin-left: 0;
+    line-height: 25px;
+  }
+
+  .contact-button {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
+}

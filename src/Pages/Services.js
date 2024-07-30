@@ -34,7 +34,7 @@ function Services() {
   return (
     <div className='service-wrapper'>
     <Navbar />
-    <div className="App">
+    <div className="service-sec">
       <div className="cards">
         {services.map((services, index) => (
           <div className="card" key={index}>
