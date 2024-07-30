@@ -1,0 +1,44 @@
+.service-wrapper{
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-top: 10px;
+}
+
+.service-sec{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #6B8A7A;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  width: 80%;
+}
+
+.card {
+  background-color: #2F4841;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.card:hover {
+  background-color: #d3d3d3;
+  color: #000;
+}
+
+.card h3 {
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.card p {
+  margin: 0;
+  font-size: 0.9em;
+}

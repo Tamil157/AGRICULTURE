@@ -1,0 +1,2 @@
+crop -  7 inputs , all are numbers. output is string.
+fertilizer - 8 inputs , 2 are strings and else are numbers. output is string.
