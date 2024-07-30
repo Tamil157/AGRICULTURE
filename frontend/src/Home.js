@@ -7,6 +7,8 @@ export default function Home(){
     <div className="parent-wrap">
       <Navbar />
       <section className="Home-sec">
+        <img />
+        <img />
       </section>
       <footer className="footer">
         <p>*2024 TeamRookies</p>
