@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './App.css';
+import './Crop.css';
 
-const App = () => {
+const Crop = () => {
   const [prediction, setPrediction] = useState(null);
   const [solution, setSolution] = useState(null);
   const [error, setError] = useState(null);
@@ -11,7 +11,7 @@ const App = () => {
     event.preventDefault();
     const fileInput = document.querySelector('input[type="file"]');
     const formData = new FormData();
-    formData.append('file', fileInput.files[0]);
+    formData.Cropend('file', fileInput.files[0]);
 
     try {
       const response = await axios.post('http://127.0.0.1:5000/predict', formData, {
@@ -36,7 +36,7 @@ const App = () => {
   };
 
   return (
-    <div className="App">
+    <div className="Crop">
       <h2>Plant Disease Prediction</h2>
       <form onSubmit={handleSubmit}>
         <input type="file" />
@@ -56,4 +56,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Crop;
