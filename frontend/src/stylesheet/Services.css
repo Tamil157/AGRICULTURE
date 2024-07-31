@@ -66,21 +66,19 @@
   overflow: hidden;
 }
 
-.description-container {
+.description-container1 {
   max-width: 500px;
   color: #fff;
   margin-right: 20px;
-  position: relative;
-  animation: slide-in 2s forwards;
 }
 
-.description-container p {
+.description-container1 p {
   margin-bottom: 20px;
   font-size: 29px;
 }
 
-.description-container button {
-  display: block; /* Ensure button is displayed */
+.description-container1 button {
+  display: block;
   padding: 10px 20px;
   background-color: #6B8A7A;
   color: #fff;
@@ -89,33 +87,44 @@
   font-size: 18px;
   cursor: pointer;
   transition: background-color 0.3s;
-  opacity: 0; /* Start as invisible */
-  animation: show-button 1s forwards 2s; /* Animate visibility after 2s */
 }
 
-@keyframes slide-in {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
+.description-container2 {
+  max-width: 500px;
+  color: #fff;
+  margin-right: 20px;
 }
 
-@keyframes show-button {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.description-container2 p {
+  margin-bottom: 20px;
+  font-size: 29px;
 }
 
-.description-container button:hover {
-  background-color: #145224;
+.description-container2 button {
+  display: block;
+  padding: 10px 20px;
+  background-color: #2F4841;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.description-container1 button:hover {
+  background-color: lightgrey;
+  color: #000;
+}
+
+.description-container2 button:hover {
+  background-color: lightgrey;
+  color: #000;
 }
 
 .tractor-img {
   width: 520px;
   border-radius: 290px;
-  animation: slide-in-right 2s forwards;
-}
-
-@keyframes slide-in-right {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
 }
 
 .modal {
@@ -165,7 +174,8 @@ label {
 
 input[type="text"],
 input[type="date"],
-textarea {
+textarea,
+input[type="file"] {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
@@ -208,7 +218,29 @@ button[type="submit"]:hover {
     margin-bottom: 20px;
   }
 
-  .tractor-img {
+  .tractor-img, .money-img {
     width: 80%;
   }
+}
+
+.service-sec3 {
+  min-height: 100vh;
+  background-color: #6B8A7A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.service-sec3 .description-and-image {
+  flex-direction: row-reverse; /* Reverse direction for loan section */
+}
+
+.service-sec3 .description-container {
+  max-width: 500px;
+  margin-left: 20px;
+}
+
+.service-sec3 .money-img {
+  width: 520px;
+  border-radius: 290px;
 }
