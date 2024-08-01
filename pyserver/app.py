@@ -5,19 +5,39 @@ import json
 import numpy as np
 from PIL import Image
 import tensorflow as tf
+import pickle
+import logging
+import traceback
 
 app = Flask(__name__)
-CORS(app)  # This will handle CORS for all routes
+CORS(app, resources={r"/*": {"origins": "*"}})  # Allow all origins
 
-# Load model and class indices
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
+
+# Load crop and fertilizer models
+try:
+    with open('C:/machine_learning/plant-disease-prediction/crop.pkl', 'rb') as f:
+        crop_model = pickle.load(f)
+except Exception as e:
+    logging.error(f"Error loading crop model: {str(e)}")
+    crop_model = None
+
+try:
+    with open('C:/machine_learning/plant-disease-prediction/fertilizer.pkl', 'rb') as f:
+        fertilizer_model = pickle.load(f)
+except Exception as e:
+    logging.error(f"Error loading fertilizer model: {str(e)}")
+    fertilizer_model = None
+
+# Load plant disease prediction model and class indices
 working_dir = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(working_dir, 'trained_model', 'plant_disease_prediction_model.h5')
 model = tf.keras.models.load_model(model_path)
 class_indices = json.load(open(os.path.join(working_dir, 'trained_model', 'class_indices.json')))
 
-# Define your disease solutions here
+# Define disease solutions
 disease_solutions = {
-    # Example entries (you need to fill this with actual data)
      "Apple___Apple_scab": "1. Prune and destroy infected leaves and branches.\n2. Apply fungicides during the growing season.",
     "Apple___Black_rot": "1. Remove and destroy infected plant parts.\n2. Apply fungicides before symptoms appear.",
     "Apple___Cedar_apple_rust": "1. Plant resistant cultivars.\n2. Remove nearby cedar trees if possible.\n3. Apply fungicides preventatively.",
@@ -56,6 +76,42 @@ disease_solutions = {
     "Tomato___Tomato_Yellow_Leaf_Curl_Virus": "1. Control whiteflies, which transmit the virus.\n2. Remove and destroy infected plants.",
     "Tomato___Tomato_mosaic_virus": "1. Control aphids, which can transmit the virus.\n2. Remove and destroy infected plants.",
     "Tomato___healthy": "No specific treatment required. Maintain good plant care practices."
+    # Add more solutions as needed
+}
+
+# Dictionaries for mapping model predictions to names
+fertilizer_dict = {
+    0: 'Urea',
+    1: 'DAP',
+    2: '14-35-14',
+    3: '28-28',
+    4: '17-17-17',
+    5: '20-20'
+}
+
+crop_dict = {
+    0: 'rice',
+    1: 'maize',
+    2: 'chickpea',
+    3: 'kidneybeans',
+    4: 'pigeonpeas',
+    5: 'mothbeans',
+    6: 'mungbean',
+    7: 'blackgram',
+    8: 'lentil',
+    9: 'pomegranate',
+    10: 'banana',
+    11: 'mango',
+    12: 'grapes',
+    13: 'watermelon',
+    14: 'muskmelon',
+    15: 'apple',
+    16: 'orange',
+    17: 'papaya',
+    18: 'coconut',
+    19: 'cotton',
+    20: 'jute',
+    21: 'coffee'
 }
 
 # Ensure uploads directory exists
@@ -77,6 +133,54 @@ def predict_image_class(model, image_path, class_indices):
     predicted_class_name = class_indices.get(str(predicted_class_index), 'Unknown')
     return predicted_class_name
 
+@app.route('/predict_crop', methods=['POST'])
+def predict_crop():
+    try:
+        data = request.json['data']
+        logging.debug(f"Received crop data: {data}")
+        if not isinstance(data, list):
+            raise ValueError("Data should be a list")
+        if len(data) != 7:
+            raise ValueError("Data should contain 7 elements")
+        data = np.array(data).reshape(1, -1)
+        logging.debug(f"Reshaped data: {data}")
+        prediction = crop_model.predict(data)
+        logging.debug(f"Crop prediction: {prediction}")
+
+        prediction_value = prediction[0]
+        crop_name = crop_dict.get(prediction_value, "Unknown crop")
+        logging.debug(f"Crop name: {crop_name}")
+
+        return jsonify({'prediction': crop_name})
+    except Exception as e:
+        logging.error(f"Error during crop prediction: {str(e)}")
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/predict_fertilizer', methods=['POST'])
+def predict_fertilizer():
+    try:
+        data = request.json['data']
+        logging.debug(f"Received fertilizer data: {data}")
+        if not isinstance(data, list):
+            raise ValueError("Data should be a list")
+        if len(data) != 8:
+            raise ValueError("Data should contain 8 elements")
+        data = np.array(data).reshape(1, -1)
+        logging.debug(f"Reshaped data: {data}")
+        prediction = fertilizer_model.predict(data)
+        logging.debug(f"Fertilizer prediction: {prediction}")
+
+        prediction_value = prediction[0]
+        fertilizer_name = fertilizer_dict.get(prediction_value, "Unknown fertilizer")
+        logging.debug(f"Fertilizer name: {fertilizer_name}")
+
+        return jsonify({'prediction': fertilizer_name})
+    except Exception as e:
+        logging.error(f"Error during fertilizer prediction: {str(e)}")
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/predict', methods=['POST'])
 def predict():
     if 'file' not in request.files:
@@ -95,4 +199,4 @@ def predict():
     return jsonify({'prediction': prediction, 'solution': solution})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
