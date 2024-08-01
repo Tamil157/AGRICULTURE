@@ -11,7 +11,7 @@ const Crop = () => {
     event.preventDefault();
     const fileInput = document.querySelector('input[type="file"]');
     const formData = new FormData();
-    formData.Cropend('file', fileInput.files[0]);
+    formData.append('file', fileInput.files[0]); // Corrected method name
 
     try {
       const response = await axios.post('http://127.0.0.1:5000/predict', formData, {
